@@ -1,0 +1,59 @@
+<ng-progress></ng-progress>
+<app-sidenav></app-sidenav>
+<section id="about" *ngIf="settings">
+  <!-- Search input
+  ===================================-->
+  <div class="top-bar">
+    <h1 *ngIf="lang">About Us</h1>
+    <h1 *ngIf="!lang">عنا</h1>
+  </div>
+  <div class="clearfix"></div>
+
+  <!-- About Us text
+  ===================================-->
+  <div class="text">
+    <div>
+      <img src="./assets/img/icons/telescope.png" alt="" />
+      <h2 *ngIf="lang">Vision</h2>
+      <h2 *ngIf="!lang">الرؤية</h2>
+      <p *ngIf="lang">{{settings.vision_en}}</p>
+      <p *ngIf="!lang">{{settings.vision_ar}}</p>
+    </div>
+    <div>
+      <img src="./assets/img/icons/rocket.png" alt="" />
+      <h2 *ngIf="lang">Mission</h2>
+      <h2 *ngIf="!lang">الأهداف</h2>
+      <p *ngIf="lang">{{settings.mission_en}}</p>
+      <p *ngIf="!lang">{{settings.mission_ar}}</p>
+    </div>
+  </div>
+
+  <!-- Ads
+  ===================================-->
+  <div class="ads">
+    <div class="ads-panel">
+      <img src="./assets/img/thumps/ad.png" alt="ADS" />
+    </div>
+    <div class="copyRights" *ngIf="lang">
+      &copy; {{today | date:'yyy'}} Wa2te
+      <br>
+      All Rights Reserved.
+    </div>
+
+    <div class="copyRights" *ngIf="!lang">
+      &copy; {{today | date:'yyy'}} وقتي
+      <br>
+      جميع الحقوق محفوظة.
+    </div>
+    <div class="social">
+      <ul>
+        <a href="{{settings.twitter}}" target="_blank"><li><i class="icon ion-social-twitter"></i></li></a>
+        <a href="{{settings.fb}}" target="_blank"><li><i class="icon ion-social-facebook"></i></li></a>
+        <a href="{{settings.linkedin}}" target="_blank"><li><i class="icon ion-social-linkedin"></i></li></a>
+        <a href="{{settings.instgram}}" target="_blank"><li><i class="icon ion-social-instagram"></i></li></a>
+      </ul>
+    </div>
+  </div>
+
+
+</section><!--/#singleCategory-->

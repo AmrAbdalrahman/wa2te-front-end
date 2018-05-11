@@ -1,0 +1,125 @@
+<!-- Instructions -->
+<div class="instructions" *ngIf="!lang">
+  <div class="d-layer"></div>
+  <img src="./assets/img/swipe.png" alt="Swipe Image" />
+  <h2>نعم , يمكنك تحريك زر القائمة</h2>
+  <span class="close-inst">لقد فهمت</span>
+</div>
+<!-- Mobile Menu Toggler -->
+<span class="mobileMenuToggler heighlighted" id="draggable" *ngIf="!lang">
+	<i class="icon ion-navicon"></i>
+</span>
+<header class="closed" *ngIf="!lang">
+  <!-- Menu Toggle -->
+  <!-- <span class="menu-toggler"><i class="icon ion-ios-arrow-thin-left"></i></span> -->
+
+  <!-- Logo -->
+  <div class="logo">
+    <a href="" routerLink="/"><img src="./assets/img/full-logo-white.png" alt="Logo" class="hideWhenClose"/></a>
+    <a href="" routerLink="/"><img src="./assets/img/logo.png" alt="Logo" class="showWhenClose" style="display: none"/></a>
+  </div>
+
+  <!-- NAV -->
+  <nav class="navSideBar">
+    <ul>
+      <li class="search clearfix">
+        <i class="icon ion-ios-search-strong"></i>
+        <input type="text" [(ngModel)]="query" placeholder="أبحث" class="hideWhenClose">
+      </li>
+      <div class="clearfix"></div>
+      <!--/-->
+      <a href="" onclick="return false;" *ngFor="let cat of categories | search:'name_ar':query" >
+        <li class="clearfix">
+          <img src="./assets/img/icons/{{cat.img}}" alt="Icon" />
+          <span class="hideWhenClose" (click)="showSub(cat.id)">{{cat.name_ar}}</span>
+          <i class="icon ion-android-add hideWhenClose"></i>
+          <div class="clearfix"></div>
+        </li>
+        <ul  class="submenu hideWhenClose" id="{{cat.id}}" style="display:none;">
+          <a  *ngFor="let subCat of cat.sub_categories" routerLink="/singleSubCategory/{{subCat.id}}">
+            <li>{{subCat.name_ar}}</li>
+          </a>
+        </ul>
+      </a>
+
+    </ul>
+  </nav>
+
+  <!-- Nav Footer -->
+  <div class="nav-footer">
+    <h1><i class="icon ion-ios-arrow-thin-left"></i></h1>
+    <div>
+      <a href="#" class="hideWhenClose">أدرج اعلانك مع وقتي</a>
+      <ul class="hideWhenClose">
+        <a routerLink="/about"><li>عنا</li></a>
+        <a href="" routerLink="/contact"><li>تواصل معنا</li></a>
+        <a href="" routerLink="/advertise"><li>أعلن</li></a>
+      </ul>
+    </div>
+  </div>
+</header>
+
+
+<!-- Instructions -->
+<div class="instructions" *ngIf="lang">
+  <div class="d-layer"></div>
+  <img src="./assets/img/swipe.png" alt="Swipe Image" />
+  <h2>Yes, It's draggable!</h2>
+  <span class="close-inst">Got it</span>
+</div>
+<!-- Mobile Menu Toggler -->
+<span class="mobileMenuToggler heighlighted" id="draggable" *ngIf="lang">
+	<i class="icon ion-navicon"></i>
+</span>
+<header class="closed" *ngIf="lang">
+  <!-- Menu Toggle -->
+  <!-- <span class="menu-toggler"><i class="icon ion-ios-arrow-thin-left"></i></span> -->
+
+  <!-- Logo -->
+  <div class="logo">
+    <a href="" routerLink="/"><img src="./assets/img/full-logo-white.png" alt="Logo" class="hideWhenClose"/></a>
+    <a href="" routerLink="/"><img src="./assets/img/logo.png" alt="Logo" class="showWhenClose" style="display: none"/></a>
+  </div>
+
+  <!-- NAV -->
+  <nav class="navSideBar">
+    <ul>
+      <li class="search clearfix">
+        <i class="icon ion-ios-search-strong"></i>
+        <input [(ngModel)]="query" type="text" placeholder="Search" class="hideWhenClose">
+      </li>
+      <div class="clearfix"></div>
+      <!--/-->
+      <a href="" class="test" onclick="return false;" *ngFor="let cat of categories | search:'name_en':query" >
+        <li class="clearfix" >
+          <img src="./assets/img/icons/{{cat.img}}" alt="Icon" />
+          <span class="hideWhenClose" (click)="showSub(cat.id)">{{cat.name_en}}</span>
+          <i class="icon ion-android-add hideWhenClose"></i>
+          <div class="clearfix"></div>
+        </li>
+        <ul class="submenu hideWhenClose" id="{{cat.id}}">
+          <a  *ngFor="let subCat of cat.sub_categories" routerLink="/singleSubCategory/{{subCat.id}}" >
+            <li >{{subCat.name_en}}</li>
+          </a>
+        </ul>
+      </a>
+      <!--/-->
+      <!--/-->
+    </ul>
+  </nav>
+
+  <!-- Nav Footer -->
+  <div class="nav-footer">
+    <h1><i class="icon ion-ios-arrow-thin-right"></i></h1>
+    <div>
+      <a href="#"  onclick="return false;" class="hideWhenClose">List your business on Wa2te</a>
+
+      <ul class="hideWhenClose" >
+        <a href="" routerLink="/about"><li>About Us</li></a>
+        <a href="" routerLink="/contact"><li>Contact Us</li></a>
+        <a href="" routerLink="/advertise"><li>Advertise</li></a>
+      </ul>
+
+    </div>
+  </div>
+</header>

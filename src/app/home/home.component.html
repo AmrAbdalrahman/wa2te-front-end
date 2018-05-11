@@ -1,0 +1,235 @@
+<ng-progress></ng-progress>
+<!-- Brand -->
+<section class="logo index-logo">
+  <img src="./assets/img/full-logo.png" alt="Logo" />
+</section>
+
+<!-- Search input
+===================================-->
+<section id="searchInput" *ngIf="lang">
+
+    <!--<p>{{governmentSearch}}</p>-->
+
+    <form [formGroup]="searchForm" (ngSubmit)="search()" novalidate>
+
+      <input formControlName="name"  type="text" [typeahead]="KeysList"  [(ngModel)]="model"  />
+
+
+      <!--<input type="text" name="name" [(ngModel)]="name"  placeholder="Search here..">-->
+      <select [ngModelOptions]="{standalone: true}"  [(ngModel)]="governmentSearch" class="select-city" data-intro='Hello step one!' >
+
+        <option value="0">All</option>
+
+        <option  *ngFor="let gov of governments" value="{{gov.id}}" >{{gov.name_en}}</option>
+
+      </select>
+
+      <button type="submit" [disabled]="!searchForm.valid"><i class="icon ion-ios-search"></i></button>
+    </form>
+
+
+
+</section>
+
+
+<!-- Search input
+===================================-->
+<section id="searchInput" *ngIf="!lang">
+  <form (submit)="search(name)">
+    <input type="text" name="name" [(ngModel)]="name" placeholder="أبحث هنا..">
+    <i class="icon ion-ios-location-outline"></i>
+    <button type="submit" [disabled]="!name"><i class="icon ion-ios-search"></i></button>
+  </form>
+</section>
+
+
+<!-- Categories -->
+<section id="categories" class="clearfix" data-intro='Hello step one!' *ngIf="lang">
+
+    <div class="single-category notClicked" *ngFor="let cat of categories | slice:0:4; let i=index "  >
+      <div  class="name" [style.background-image]="'url(' + img + +  (1+i) + +'.png'+ ')'">
+        <img src="./assets/img/icons/{{cat.img}}" alt="Icon" />
+        <span >{{cat.name_en}}</span>
+
+      </div>
+      <div class="categoriesSamples clearfix">
+
+        <ul >
+          <a *ngFor="let subCat of cat.sub_categories; let last = last;" routerLink="/singleSubCategory/{{subCat.id}}">
+            <li>{{subCat.name_en}}</li>
+          </a>
+            <a  href="#" class="close-catg" onclick="return false;" ><li>Close</li></a>
+
+        </ul>
+      </div><!--/.categoriesSamples-->
+    </div><!--/.single-city-->
+
+
+  <!--/-->
+  <div class="single-category viewMore" >
+    <i class="icon ion-ios-plus-empty"></i>
+    <div class="name">
+      <span>View More</span>
+    </div>
+  </div><!--/.single-city-->
+
+  <!--/-->
+
+
+  <span class="all-catg">
+
+
+    <div class="single-category notClicked" *ngFor="let cat of categories  | slice:4">
+      <div class="name" [style.background-image]="'url(' + img + +  (1+i) + +'.png'+ ')'">
+        <img src="./assets/img/icons/{{cat.img}}" alt="Icon" />
+        <span>{{cat.name_en}}</span>
+      </div>
+      <div class="categoriesSamples clearfix">
+        <ul >
+          <a *ngFor="let subCat of cat.sub_categories" routerLink="/singleSubCategory/{{subCat.id}}">
+            <li>{{subCat.name_en}}</li>
+          </a>
+          <a  href="#" class="close-catg" onclick="return false;"><li>Close</li></a>
+        </ul>
+      </div><!--/.categoriesSamples-->
+    </div><!--/.single-city-->
+
+    <!--/-->
+  <div class="clearfix"></div>
+  <a href="#" onclick="return false;">
+    <div class="single-category viewAll">
+      <span>View All</span>
+    </div><!--/.single-city-->
+  </a>
+    <!--/-->
+</span><!--/.more-catg-->
+
+
+</section><!--/#categories-->
+
+<!-- Categories -->
+<section id="categories" class="clearfix" *ngIf="!lang">
+  <a href="#" onclick="return false;">
+    <div class="single-category notClicked" *ngFor="let cat of categories| slice:0:4; let i=index ">
+      <div class="name" [style.background-image]="'url(' + img + +  (1+i) + +'.png'+ ')'">
+        <img src="./assets/img/icons/{{cat.img}}" alt="Icon" />
+        <span>{{cat.name_ar}}</span>
+      </div>
+      <div class="categoriesSamples clearfix">
+        <ul>
+          <a *ngFor="let subCat of cat.sub_categories; let last = last;" routerLink="/singleSubCategory/{{subCat.id}}">
+            <li>{{subCat.name_ar}}</li>
+          </a>
+          <a  href="#" class="close-catg" onclick="return false;" ><li>إغلاق</li></a>
+
+        </ul>
+      </div><!--/.categoriesSamples-->
+    </div><!--/.single-city-->
+  </a>
+
+  <a href="#" onclick="return false;">
+    <div class="single-category viewMore">
+      <i class="icon ion-ios-plus-empty"></i>
+      <div class="name">
+        <span>اعرض الكل</span>
+      </div>
+    </div><!--/.single-city-->
+  </a>
+  <!--/-->
+
+
+  <span class="all-catg">
+
+  <a href="#" onclick="return false;">
+    <div class="single-category notClicked" *ngFor="let cat of categories  | slice:4">
+      <div class="name" [style.background-image]="'url(' + img + +  (1+i) + +'.png'+ ')'">
+        <img src="./assets/img/icons/{{cat.img}}" alt="Icon" />
+        <span>{{cat.name_ar}}</span>
+      </div>
+      <div class="categoriesSamples clearfix">
+        <ul>
+          <a *ngFor="let subCat of cat.sub_categories" routerLink="/singleSubCategory/{{subCat.id}}">
+            <li>{{subCat.name_ar}}</li>
+          </a>
+          <a  href="#" class="close-catg" onclick="return false;"><li>إفلاق</li></a>
+        </ul>
+      </div><!--/.categoriesSamples-->
+    </div><!--/.single-city-->
+  </a>
+
+    <!--/-->
+  <div class="clearfix"></div>
+  <a href="#" onclick="return false;">
+    <div class="single-category viewAll">
+      <span>أعرض الكل</span>
+    </div><!--/.single-city-->
+  </a>
+    <!--/-->
+</span><!--/.more-catg-->
+</section><!--/#categories-->
+
+
+<section id="Allcategories" class="clearfix">
+  <div class="d-bg"></div>
+  <div class="logo">
+    <img src="./assets/img/full-logo.png" alt="Logo" />
+  </div>
+  <span class="hideAll"><i class="icon ion-ios-close-empty"></i></span>
+
+  <div class="shortcuts">
+    <h3>Shortcuts: </h3>
+
+  </div>
+
+  <div class="clearfix"></div>
+  <div class="warpper">
+    <div class="single-category-card" *ngFor="let cat of categories; let i=index;" id="{{cat.name}}" >
+      <div class="top">
+        <div class="d-layer"></div>
+        <img src="./assets/img/bg/{{(1+i)}}.png" alt="background" class="bg"/>
+        <img src="./assets/img/icons/{{cat.img}}" alt="Icon" class="icon"/>
+        <span class="name" *ngIf="lang">{{cat.name_en}}</span>
+        <span class="name" *ngIf="!lang">{{cat.name_ar}}</span>
+      </div><!--/top-->
+      <div class="bottom">
+        <ul *ngFor="let subCat of cat.sub_categories">
+          <a routerLink="/singleSubCategory/{{subCat.id}}">
+            <li *ngIf="lang">{{subCat.name_en}}</li>
+            <li *ngIf="!lang">{{subCat.name_ar}}</li>
+          </a>
+        </ul>
+      </div><!--/bottom-->
+    </div><!--/.card-->
+
+  </div><!--/warpper-->
+</section><!--/#Allcategories-->
+
+
+
+<footer>
+  <ul class="footer-nav" *ngIf="lang">
+    <a href="" routerLink="/about"><li>About</li></a>
+    <a href="" routerLink="/contact"><li>Contact Us</li></a>
+    <a href="" routerLink="/advertise"><li>Advertise</li></a>
+    <a href="" (click)="changeLanguage('ar')">عربي</a>
+  </ul>
+
+  <ul class="footer-nav" *ngIf="!lang">
+    <a href="" routerLink="/about"><li>عنا</li></a>
+    <a href="" routerLink="/contact"><li>تواصل معنا</li></a>
+    <a href="" routerLink="/advertise"><li>أعلن معنا</li></a>
+    <a href="" (click)="changeLanguage('en')">English</a>
+  </ul>
+  <span class="copyRights" *ngIf="lang">&copy; {{today | date:'yyy'}} Wa2te. All Rights Reserved.</span>
+  <span class="copyRights" *ngIf="!lang"> جميع الحقوق محفوظة &copy;{{today | date:'yyy'}} وقتي</span>
+  <ul class="social-media" *ngIf="settings">
+
+    <a href="{{settings.twitter}}" target="_blank"><li><i class="icon ion-social-twitter"></i></li></a>
+    <a href="{{settings.fb}}" target="_blank"><li><i class="icon ion-social-facebook"></i></li></a>
+    <a href="{{settings.linkedin}}" target="_blank"><li><i class="icon ion-social-linkedin"></i></li></a>
+    <a href="{{settings.instgram}}" target="_blank"><li><i class="icon ion-social-instagram"></i></li></a>
+
+  </ul>
+</footer>
+
+

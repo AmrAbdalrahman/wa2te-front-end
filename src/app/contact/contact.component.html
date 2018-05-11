@@ -1,0 +1,185 @@
+<ng-progress></ng-progress>
+<app-sidenav></app-sidenav>
+
+<section id="advertiseWithUs">
+
+  <!-- Search input
+  ===================================-->
+  <div class="top-bar">
+    <h1>{{title}}</h1>
+  </div>
+  <div class="clearfix"></div>
+
+  <!-- Form
+  ===================================-->
+  <div class="form" *ngIf="lang" >
+
+    <form class="adv-form" #addContactForm="ngForm" (submit)="addContactSubmit()">
+      <div class="input-group">
+        <input type="text" name="fullname" required maxlength="30" [(ngModel)]="model.fullname" #fullname="ngModel">
+        <label for="fullname">Your Full Name</label>
+
+          <div *ngIf="fullname.errors && (fullname.dirty || fullname.touched)" class="alert alert-danger">
+              <div [hidden]="!fullname.errors.required">
+                  <span class="">FullName is required</span>
+              </div>
+          </div>
+
+      </div>
+
+      <div class="input-group">
+        <input type="text" name="email" required email [(ngModel)]="model.email" #email="ngModel">
+        <label for="email">Your Email Address</label>
+
+          <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+              <div [hidden]="!email.errors.required">
+                  <span class="">Email is required</span>
+              </div>
+          </div>
+
+      </div>
+
+      <div class="input-group">
+        <input type="text" name="category" required maxlength="30" [(ngModel)]="model.category" #category="ngModel">
+        <label for="category">Category</label>
+
+          <div *ngIf="category.errors && (category.dirty || category.touched)" class="alert alert-danger">
+              <div [hidden]="!category.errors.required">
+                  <span class="">Category is required</span>
+              </div>
+          </div>
+
+      </div>
+
+      <div class="input-group">
+        <input  type="text" name="phone" required minlength=2 maxlength=20  [(ngModel)]="model.phone" #phone="ngModel">
+        <label for="phone">Phone</label>
+
+          <div *ngIf="phone.errors && (phone.dirty || phone.touched)" class="alert alert-danger">
+              <div [hidden]="!phone.errors.required">
+                  <span class="">Phone is required</span>
+              </div>
+          </div>
+
+      </div>
+
+      <div class="input-group">
+        <textarea rows="7" name="desc" required  [(ngModel)]="model.desc" #desc="ngModel"></textarea>
+        <label for="desc">Description</label>
+
+          <div *ngIf="desc.errors && (desc.dirty || desc.touched)" class="alert alert-danger">
+              <div [hidden]="!desc.errors.required">
+                  <span class="">Description is required</span>
+              </div>
+          </div>
+
+      </div>
+
+      <input type="submit" [disabled]="!addContactForm.form.valid">
+        <div class="alert alert-success alert-dismissible" id="msg1" style="display: none;"></div>
+
+      <div class="clearfix"></div>
+    </form>
+    <div class="clearfix"></div>
+  </div>
+
+    <div class="form" *ngIf="!lang">
+        <form class="adv-form" #addContactForm="ngForm" (submit)="addContactSubmit()">
+            <div class="input-group">
+                <input type="text" name="fullname" required maxlength="30" [(ngModel)]="model.fullname" #fullname="ngModel">
+                <label for="fullname">الأسم بالكامل</label>
+
+                <div *ngIf="fullname.errors && (fullname.dirty || fullname.touched)" class="alert alert-danger">
+                    <div [hidden]="!fullname.errors.required">
+                        <span class="">الأسم مطلوب</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="input-group">
+                <input type="text" name="email" required email [(ngModel)]="model.email" #email="ngModel">
+                <label for="email">البريد الإلكتروني</label>
+
+                <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+                    <div [hidden]="!email.errors.required">
+                        <span class="">البريد مطلوب</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="input-group">
+                <input type="text" name="category" required maxlength="30" [(ngModel)]="model.category" #category="ngModel">
+                <label for="category">الفئة</label>
+
+                <div *ngIf="category.errors && (category.dirty || category.touched)" class="alert alert-danger">
+                    <div [hidden]="!category.errors.required">
+                        <span class="">الفئة مطلوبة</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="input-group">
+                <input  type="text" name="phone" required minlength=2 maxlength=20  [(ngModel)]="model.phone" #phone="ngModel">
+                <label for="phone">رقم الهاتف</label>
+
+                <div *ngIf="phone.errors && (phone.dirty || phone.touched)" class="alert alert-danger">
+                    <div [hidden]="!phone.errors.required">
+                        <span class="">الرقم مطلوب</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="input-group">
+                <textarea rows="7" name="desc" required  [(ngModel)]="model.desc" #desc="ngModel"></textarea>
+                <label for="desc">الوصف</label>
+
+                <div *ngIf="desc.errors && (desc.dirty || desc.touched)" class="alert alert-danger">
+                    <div [hidden]="!desc.errors.required">
+                        <span class="">الوصف مطلوب</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <input type="submit" [disabled]="!addContactForm.form.valid" value="إرسال الطلب">
+            <div class="alert alert-success alert-dismissible" id="msg1" style="display: none;"></div>
+
+            <div class="clearfix"></div>
+        </form>
+        <div class="clearfix"></div>
+    </div>
+  <!-- Ads
+  ===================================-->
+  <div class="ads">
+    <div class="ads-panel">
+      <img src="./assets/img/thumps/ad.png" alt="ADS" />
+    </div>
+
+    <div class="copyRights" *ngIf="lang">
+      &copy; {{today | date:'yyy'}} Wa2te
+      <br>
+      All Rights Reserved.
+    </div>
+
+    <div class="copyRights" *ngIf="!lang">
+      &copy; {{today | date:'yyy'}} وقتي
+      <br>
+      جميع الحقوق محفوظة.
+    </div>
+
+    <div class="social">
+      <ul *ngIf="settings">
+        <a href="{{settings.twitter}}" target="_blank"><li><i class="icon ion-social-twitter"></i></li></a>
+        <a href="{{settings.fb}}" target="_blank"><li><i class="icon ion-social-facebook"></i></li></a>
+        <a href="{{settings.linkedin}}" target="_blank"><li><i class="icon ion-social-linkedin"></i></li></a>
+        <a href="{{settings.instgram}}" target="_blank"><li><i class="icon ion-social-instagram"></i></li></a>
+      </ul>
+    </div>
+  </div>
+
+
+</section><!--/#singleCategory-->

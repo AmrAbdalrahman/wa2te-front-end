@@ -1,0 +1,137 @@
+<ng-progress></ng-progress>
+<app-sidenav></app-sidenav>
+<!-- Single Category
+===================================-->
+<section id="singleCategory" >
+
+<!-- Category Sponsers
+  ===================================-->
+<div class="slider">
+  <div id="sponsersSlider" class="carousel slide carousel-fade" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+
+      <li *ngFor="let slider  of sliders; let first = first; let i = index; " data-target="#sponsersSlider" [attr.data-slide-to]="i" [class.active]="first"></li>
+
+      <!--<li data-target="#sponsersSlider" data-slide-to="0" class="active"></li>
+      <li data-target="#sponsersSlider" data-slide-to="1"></li>
+      <li data-target="#sponsersSlider" data-slide-to="2"></li>-->
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+
+      <div *ngFor="let slider  of sliders; let first = first; "  class="item"  [class.active]="first">
+        <div class="d-layer"></div><!-- Ta make dark layer above images -->
+        <img src="./assets/img/single-cateogry/{{slider.img}}"/>
+        <div class="carousel-caption" >
+          <h2 *ngIf="lang"> {{slider.title_en}} </h2>
+          <h2 *ngIf="!lang"> {{slider.title_ar}} </h2>
+
+          <p *ngIf="lang  ">{{slider.desc_en}}</p>
+          <p *ngIf="!lang">{{slider.desc_ar}}</p>
+        </div>
+      </div>
+      <!--/-->
+
+    </div><!--/.carousel-inner-->
+    <!-- Controls -->
+    <a class="left carousel-control" href="#sponsersSlider" role="button" data-slide="prev">
+      <span class="icon ion-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#sponsersSlider" role="button" data-slide="next">
+      <span class="icon ion-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div><!--/#sponsersSlider-->
+</div><!--/.slider-->
+
+
+<!-- Categories Cards
+  ===================================-->
+<div class="categories-cards clearfix">
+
+  <div class="row">
+  <a *ngFor="let contact of singleCat; let i=first" routerLink="/single/{{contact.id}}">
+
+    <div  class="single-card asGrid" >
+    <div class="d-layer"></div><!--To make dark layer on top of images -->
+    <img src="./assets/img/thumps/{{contact.square_img}}" alt="" />
+    <h3 *ngIf="lang">{{contact.title_en}}</h3>
+      <h3 *ngIf="!lang">{{contact.title_ar}}</h3>
+
+    <p *ngIf="lang">{{contact.desc_en}}</p>
+      <p *ngIf="!lang">{{contact.desc_ar}}</p>
+
+    <span class="catg-name" *ngIf="lang">{{subCat.name_en}}</span>
+      <span class="catg-name" *ngIf="!lang">{{subCat.name_ar}}</span>
+    </div>
+    </a>
+  </div>
+
+<!--/-->
+<div class="ads-panel-row">
+  <!-- ADS Code -->
+</div>
+
+</div><!--/.categories-cards-->
+
+<!-- Controller and Ads
+===================================-->
+<div class="ads">
+  <div class="controller" data-intro='Some description or hint about this thing!'>
+    <i class="icon ion-grid active"></i>
+    <i class="icon ion-navicon"></i>
+  </div>
+  <div class="ads-panel">
+    <img src="./assets/img/thumps/ad.png" alt="ADS" />
+  </div>
+  <div class="copyRights" *ngIf="lang">
+    &copy; {{today | date:'yyy'}} Wa2te
+    <br>
+    All Rights Reserved.
+  </div>
+
+  <div class="copyRights" *ngIf="!lang">
+    &copy; {{today | date:'yyy'}} وقتي
+    <br>
+    جميع الحقوق محفوظة
+  </div>
+
+  <div class="social">
+    <ul *ngIf="settings">
+      <a href="{{settings.twitter}}" target="_blank"><li><i class="icon ion-social-twitter"></i></li></a>
+      <a href="{{settings.fb}}" target="_blank"><li><i class="icon ion-social-facebook"></i></li></a>
+      <a href="{{settings.linkedin}}" target="_blank"><li><i class="icon ion-social-linkedin"></i></li></a>
+      <a href="{{settings.instgram}}" target="_blank"><li><i class="icon ion-social-instagram"></i></li></a>
+    </ul>
+  </div>
+</div>
+</section>
+<footer id="innerPagesFooter">
+  <ul class="footer-nav" *ngIf="lang">
+    <a href="about.php"><li>About</li></a>
+    <a href="advertise.php"><li>Contact Us</li></a>
+    <a href="advertise.php"><li>Advertise</li></a>
+    <a href="home.php"><li>Listing</li></a>
+  </ul>
+
+  <ul class="footer-nav" *ngIf="!lang">
+    <a href="about.php"><li>عنا</li></a>
+    <a href="advertise.php"><li>تواصل معنا</li></a>
+    <a href="advertise.php"><li>أعلن معنا</li></a>
+    <a href="home.php"><li>إدراج</li></a>
+  </ul>
+
+  <span class="copyRights" *ngIf="lang">&copy; {{today | date:'yyy'}} Wa2te. All Rights Reserved.</span>
+  <span class="copyRights" *ngIf="!lang">&copy; {{today | date:'yyy'}} وقتي. جميع الحقوق محفوظة.</span>
+
+  <ul class="social-media" *ngIf="settings">
+    <a href="{{settings.twitter}}" target="_blank"><li><i class="icon ion-social-twitter"></i></li></a>
+    <a href="{{settings.fb}}"><li><i class="icon ion-social-facebook"></i></li></a>
+    <a href="{{settings.linkedin}}"><li><i class="icon ion-social-linkedin"></i></li></a>
+    <a href="{{settings.instgram}}"><li><i class="icon ion-social-instagram"></i></li></a>
+  </ul>
+</footer>
+

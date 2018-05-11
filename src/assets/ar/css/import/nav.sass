@@ -1,0 +1,260 @@
+/*====================================
+  Vars
+$colorDark: rgb(43, 58, 66)
+$colorSimiDark: rgb(63, 87, 101)
+$colorLightDark: rgb(189, 212, 222)
+$colorlight: rgb(239, 239, 239)
+$colorOrang: rgb(255, 83, 13)
+
+/*====================================
+  Navbar
+header
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  width: 18%
+  background: $colorDark
+  transition: .3s
+  display: block
+  overflow: hidden
+  max-height: 100vh
+  z-index: 9999
+  border-right: 1px solid rgba(238, 238, 238, .25)
+  .menu-toggler
+    position: absolute
+    top: 0px
+    font-size: 2em
+    color: rgb(255, 255, 255)
+    left: -50px
+    background: $colorDark
+    width: 50px
+    text-align: center
+  .logo
+    width: 100%
+    padding: 10px 0px
+    border-bottom: 1px solid rgba(238, 238, 238, .3)
+    img
+      width: 80%
+      margin: auto
+      display: block
+  nav
+    height: 80%
+    .mCSB_inside > .mCSB_container
+      margin-right: 0
+    > ul
+      max-height: 77vh
+    ul
+      list-style-type: none
+      padding: 0
+      margin: 0
+      margin-top: 1em
+      min-width: 200px
+      li.search
+        i
+          float: left
+          font-size: 2em
+          color: #FFF
+          margin: auto 5%
+          margin-top: -3px
+        input
+          border: none
+          background: transparent
+          padding: 5px
+          font-size: 1.5em
+          width: 70%
+          color: #FFF
+          &:focus
+            outline: 0
+            box-shadow: none
+      li.active
+        background: $colorSimiDark
+        &:hover
+          background: $colorSimiDark
+      li
+        margin-top: .5em
+        padding: .5em
+        transition: .15s
+        font-size: 1em
+        &:hover
+          background: rgba(255, 255, 255, .2)
+          cursor: pointer
+        img
+          float: left
+          width: 2em
+          margin-right: 10px
+        span
+          color: #FFF
+          margin-right: 20px
+          display: inline-block
+          line-height: 2em
+          width: 55%
+        i.ion-android-add
+          float: right
+          color: #FFF
+          font-size: 1.5em
+          margin-right: .7em
+          transition: .2s
+      ul.submenu
+        list-style-type: none
+        margin: 0
+        padding: 0
+        display: none
+        background: $colorSimiDark
+        margin-top: -1em
+        padding-top: 1em
+        padding-bottom: 1em
+        > a, > a:hover
+          color: #FFF
+          text-decoration: none
+          > li
+            padding: 5px
+            padding-right: 4em
+            &:hover
+              background: rgba(255, 255, 255, .9)
+              padding-right: 4.35em
+              color: #111
+  .nav-footer
+    position: absolute
+    bottom: 0
+    right: 0
+    left: 0
+    background: $colorDark
+    border-top: 1px solid rgba(238, 238, 238, .6)
+    > div
+      min-width: 200px
+    h1
+      text-align: center
+      color: #FFF
+      cursor: pointer
+      opacity: .7
+      transition: .1s
+      margin-top: .2em
+      &:hover
+        opacity: 1
+    div > a
+      display: block
+      color: #FFF
+      text-align: center
+      text-decoration: none
+      font-size: .8em
+      font-weight: 100
+      transition: .15s
+      margin: 5px auto
+      opacity: .7
+      &:hover
+        opacity: 1
+    div > ul
+      padding: 0
+      margin: 0
+      list-style-type: none
+      a
+        color: #FFF
+        text-decoration: none
+        transition: .15s
+        opacity: .7
+        font-size: .8em
+        margin: 5px auto
+        &:hover
+          opacity: 1
+        li
+          display: inline-block
+          width: 31.333%
+          text-align: center
+
+
+
+
+
+
+// Menu when Closed
+header.closed
+  width: 5%
+  .hideWhenClose
+    display: none !important
+  .showWhenClose
+    display: block !important
+  nav ul
+    min-width: auto
+    li.search
+      i
+        float: none
+        font-size: 2.5em
+    li
+      text-align: center
+      img
+        display: block
+        margin: auto
+        float: none
+        width: 2.2em
+
+// Mobile Toggler
+.mobileMenuToggler
+  display: none
+  position: absolute
+  left: 3%
+  top: 2%
+  font-size: 5em
+  color: $colorOrang
+  z-index: 100
+  cursor: pointer
+  padding: 0px 20px
+  transition: .1s
+  background: rgba(255, 255, 255, .2)
+  border: 1px solid rgba(238, 238, 238, .2)
+
+
+
+// instructions
+.instructions
+  position: absolute
+  right: 0
+  left: 0
+  top: 0
+  bottom: 0
+  background: rgba(9, 9, 9 , .85)
+  color: #FFF
+  width: 100%
+  height: 100%
+  z-index: 100
+  text-align: center
+  padding-top: 22vh
+  display: none
+  span.close-inst
+    width: 60%
+    margin: auto
+    margin-top: 7vh
+    display: block
+    color: #FFF
+    border-radius: 4px
+    background: $colorOrang
+    font-size: 1.2em
+    padding: 10px 20px
+    cursor: pointer
+  & + .heighlighted
+    animation: pulse 1s infinite
+
+
+@-webkit-keyframes pulse
+  0%
+    -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 1)
+
+  70%
+    -webkit-box-shadow: 0 0 0 10px rgba(255, 255, 255, .7)
+
+  100%
+    -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, .3)
+
+
+@keyframes pulse
+  0%
+    -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 1)
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, .4)
+
+  70%
+    -moz-box-shadow: 0 0 0 10px rgba(255, 255, 255, .7)
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0)
+
+  100%
+    -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, .3)
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0)

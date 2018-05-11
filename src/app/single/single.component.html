@@ -1,0 +1,417 @@
+<app-sidenav></app-sidenav>
+
+<section  id="single" *ngIf="single && !lang" >
+<div class="slider">
+  <!-- Map -->
+  <div class="map-warpper">
+    <span><i class="icon ion-ios-close-empty"></i></span>
+    <iframe [src]='getUrl() | safeUrl' width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+  </div>
+
+  <!-- Slider -->
+  <div id="singleSlider" class="carousel slide carousel-fade" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+
+      <li *ngFor="let slider  of sliders; let first = first; let i = index; " data-target="#sponsersSlider" [attr.data-slide-to]="i" [class.active]="first"></li>
+
+      <!--<li data-target="#singleSlider" data-slide-to="0" class="active"></li>
+      <li data-target="#singleSlider" data-slide-to="1"></li>
+      <li data-target="#singleSlider" data-slide-to="2"></li>-->
+
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div *ngFor="let slider of sliders; let first = first;"   class="item"  [class.active]="first">
+        <div class="d-layer"></div><!-- Ta make dark layer above images -->
+        <img src="./assets/img/single/{{slider.img}}" />
+        <div class="carousel-caption">
+          <h2>{{slider.title_ar}}</h2>
+          <p>
+            {{slider.desc_ar}}          </p>
+        </div>
+      </div>
+      <!--/-->
+
+    </div><!--/.carousel-inner-->
+    <!-- Controls -->
+    <a class="left carousel-control" href="#singleSlider" role="button" data-slide="prev">
+      <span class="icon ion-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">قبل</span>
+    </a>
+    <a class="right carousel-control" href="#singleSlider" role="button" data-slide="next">
+      <span class="icon ion-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">بعد</span>
+    </a>
+  </div><!--/#sponsersSlider-->
+</div><!--/.slider-->
+
+  <!-- Place Details
+  ===================================-->
+  <div class="place-details">
+    <h1>{{single.title_ar}}</h1>
+    <p>
+      {{ single.desc_ar }}
+    </p>
+    <div class="details-list">
+      <div class="single-detail">
+        <span class="icon icon-map open-map"><i class="icon ion-ios-location-outline" (click)="mapContact(single.lat,single.lon)"></i></span>
+        <span class="text">{{single.address_ar}}</span>
+      </div>
+      <!--/-->
+      <div class="single-detail">
+        <span class="icon"><i class="icon ion-android-share-alt"></i></span>
+        <span class="text">شارك</span>
+      </div>
+      <!--/-->
+      <div class="single-detail">
+        <span class="icon"><i class="icon ion-ios-telephone"></i></span>
+        <span class="text">{{single.phone}}</span>
+      </div>
+      <!--/-->
+      <div class="single-detail" (click)="openModal(template)">
+        <span class="icon"><i class="icon ion-alert-circled"></i></span>
+        <span class="text">أبلغ عن معلومة خاطئة</span>
+      </div>
+      <!--/-->
+      <div class="single-detail">
+        <span class="icon"><i class="icon ion-ios-world-outline"></i></span>
+        <span class="text"><a href="{{single.website}}" target="_blank">{{single.website}}</a></span>
+      </div>
+      <!--/-->
+      <div class="single-detail">
+        <div class="social">
+          <ul>
+            <a href="{{single.twitter}}" target="_blank"><li><i class="icon ion-social-twitter"></i></li></a>
+            <a href="{{single.fb}}" target="_blank"><li><i class="icon ion-social-facebook"></i></li></a>
+            <a href="{{single.linkedin}}" target="_blank"><li><i class="icon ion-social-linkedin"></i></li></a>
+            <a href="{{single.instagram}}" target="_blank"><li><i class="icon ion-social-instagram"></i></li></a>
+          </ul>
+        </div>
+      </div>
+      <!--/-->
+    </div><!--/.details-list-->
+    <div class="clearfix"></div>
+    <div class="branches">
+      <h3>فروع أخري</h3>
+      <ul>
+        <li *ngFor=" let branch of branches;" (click)="mapBranch(branch.lat,branch.lng)"> {{ branch.title_ar }} , {{ branch.address }}</li>
+
+      </ul>
+    </div><!--/.branches-->
+    <div class="clearfix"></div>
+    <div class="related-places">
+      <h3>أماكن ذات صلة</h3>
+
+      <a *ngFor="let place of related" routerLink="/single/{{place.id}}">
+        <div class="one-row clearfix">
+          <div class="image">
+            <img src="./assets/img/thumps/square/{{place.square_img}}" alt="" />
+          </div>
+          <div class="text">
+            <h4>{{place.title_ar}}</h4>
+            <p>
+              {{place.desc_ar}}
+            </p>
+          </div>
+        </div>
+      </a>
+      <!--/-->
+
+    </div><!--/.related-places-->
+  </div><!--/.place-details-->
+
+
+  <div class="ads">
+    <div class="ads-panel">
+      <img src="./assets/img/thumps/ad.png" alt="ADS" />
+    </div>
+    <div class="copyRights">
+      &copy; {{today | date:'yyy'}} وقتي
+      <br>
+      جميع الحقوق محفوظة
+    </div>
+    <div class="social" *ngIf="settings">
+      <ul>
+        <a href="{{settings.twitter}}" target="_blank"><li><i class="icon ion-social-twitter"></i></li></a>
+        <a href="{{settings.fb}}" target="_blank"><li><i class="icon ion-social-facebook"></i></li></a>
+        <a href="{{settings.linkedin}}" target="_blank"><li><i class="icon ion-social-linkedin"></i></li></a>
+        <a href="{{settings.instgram}}" target="_blank"><li><i class="icon ion-social-instagram"></i></li></a>
+      </ul>
+    </div>
+  </div>
+
+
+</section>
+
+<section id="single" *ngIf="single && lang" >
+
+  <!-- Place Images
+  ===================================-->
+  <div class="slider">
+    <!-- Map -->
+    <div class="map-warpper">
+      <span><i class="icon ion-ios-close-empty"></i></span>
+      <iframe [src]='getUrl()| safeUrl' width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+    </div>
+    <!-- Slider -->
+    <div id="singleSlider" class="carousel slide carousel-fade" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li *ngFor="let slider  of sliders; let first = first; let i = index; " data-target="#sponsersSlider" [attr.data-slide-to]="i" [class.active]="first"></li>
+
+        <!--<li data-target="#singleSlider" data-slide-to="0" class="active"></li>
+        <li data-target="#singleSlider" data-slide-to="1"></li>
+        <li data-target="#singleSlider" data-slide-to="2"></li>-->
+
+
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+        <div *ngFor="let slider of sliders; let first = first;"  class="item"  [class.active]="first">
+          <div class="d-layer"></div><!-- Ta make dark layer above images -->
+          <img src="./assets/img/single/{{slider.img}}" />
+          <div class="carousel-caption">
+            <h2>{{slider.title_en}}</h2>
+
+            <p>{{slider.desc_en}}</p>
+          </div>
+        </div>
+        <!--/-->
+      </div><!--/.carousel-inner-->
+
+    </div><!--/#sponsersSlider-->
+  </div><!--/.slider-->
+
+
+  <!-- Place Details
+  ===================================-->
+  <div class="place-details">
+    <!-- Map button -->
+    <div class="custom-map-btn"><i class="icon ion-map"></i></div>
+    <h1>{{single.title_en}}</h1>
+
+    <p>{{ single.desc_en }}</p>
+
+    <div class="details-list">
+      <div class="single-detail">
+        <span class="icon icon-map open-map" data-intro='Some description or hint about this thing!'><i class="icon ion-ios-location-outline" (click)="mapContact(single.lat,single.lon)"></i></span>
+        <span class="text"> {{single.address_en}} </span>
+      </div>
+      <!--/-->
+      <div class="single-detail">
+        <span class="icon"><i class="icon ion-android-share-alt"></i></span>
+        <span class="text">Share</span>
+      </div>
+      <!--/-->
+      <div class="single-detail">
+        <span class="icon"><i class="icon ion-ios-telephone"></i></span>
+        <span class="text">{{single.phone}}</span>
+      </div>
+      <!--/-->
+      <div class="single-detail" *ngIf="workTime">
+        <span class="icon"><i class="icon ion-clock"></i></span>
+        <span class="text">{{workTime}}</span>
+      </div>
+      <!--/-->
+      <div class="single-detail" (click)="openModal(template)">
+        <span class="icon"><i class="icon ion-alert-circled"></i></span>
+        <span  class="text">Report Incorrect Data</span>
+      </div>
+      <!--/-->
+      <div class="single-detail">
+        <span class="icon"><i class="icon ion-ios-world-outline"></i></span>
+        <span class="text"><a href="{{single.website}}" target="_blank">{{single.website}}</a></span>
+      </div>
+      <!--/-->
+      <div class="single-detail">
+        <div class="social">
+          <ul>
+            <a href="{{single.twitter}}" target="_blank"><li><i class="icon ion-social-twitter"></i></li></a>
+            <a href="{{single.fb}}" target="_blank"><li><i class="icon ion-social-facebook"></i></li></a>
+            <a href="{{single.linkedin}}" target="_blank"><li><i class="icon ion-social-linkedin"></i></li></a>
+            <a href="{{single.instagram}}" target="_blank"><li><i class="icon ion-social-instagram"></i></li></a>
+          </ul>
+        </div>
+      </div>
+      <!--/-->
+    </div><!--/.details-list-->
+    <div class="clearfix"></div>
+    <div class="menu" data-intro='Some description or hint about this thing!'>
+      <h3>Menu</h3>
+      <img src="./assets/img/single/{{single.rect_img}}" alt="Menu" />
+      <div class="full">
+        <span>Show full image <i class="icon ion-chevron-down"></i></span>
+      </div>
+    </div><!--/menu-->
+    <div class="branches">
+      <h3>Branches</h3>
+
+      <ul class="branches-cards">
+
+        <li class="single-branch" *ngFor=" let branch of branches;  let i = index " (click)="mapBranch(branch.lat,branch.lng)" >
+
+          <div class="image" [style.background-image]="'url(' + img + +  (1+i) + +'.png'+ ')'" ></div>
+          <div class="info">
+            <h2>{{ branch.title_en }} </h2>
+            <p>
+              {{ branch.desc_en }}
+            </p>
+            <span class="see-more">see more</span>
+            <div class="details-list">
+              <div class="single-detail">
+                <span class="icon icon-map open-map"><i class="icon ion-ios-location-outline"></i></span>
+                <span class="text" >{{ branch.address }}</span>
+              </div>
+              <!--/-->
+
+              <div class="single-detail">
+                <span class="icon"><i class="icon ion-ios-telephone"></i></span>
+                <span class="text">{{ branch.phone }}</span>
+              </div>
+              <!--/-->
+              <div class="single-detail" *ngIf="workTime">
+                <span class="icon"><i class="icon ion-clock"></i></span>
+                <span class="text">{{workTime}}</span>
+              </div>
+              <!--/-->
+            </div><!--/.details-list-->
+          </div><!--/info-->
+        </li><!--/single-branch-->
+
+      </ul><!--/branches-cards-->
+
+
+    </div><!--/.branches-->
+    <div class="clearfix"></div>
+    <div class="related-places">
+      <h3>Related Places</h3>
+
+      <div class="categories-cards full-width">
+
+        <!--loop-->
+        <a  *ngFor="let place of related" routerLink="/single/{{place.id}}">
+          <div class="single-card asGrid">
+            <div class="d-layer"></div><!--To make dark layer on top of images -->
+            <img src="./assets/img/thumps/{{place.square_img}}" alt="" />
+            <h3>{{place.title_en}}</h3>
+            <p>
+              {{place.desc_en}}
+            </p>
+            <span class="catg-name" >{{nameSub.name_en}}</span>
+          </div>
+        </a>
+
+      </div>
+
+    </div><!--/.related-places-->
+  </div><!--/.place-details-->
+  <!-- Controller and Ads
+  ===================================-->
+  <div class="ads">
+    <div class="ads-panel">
+      <img src="./assets/img/thumps/ad.png" alt="ADS" />
+    </div>
+    <div class="copyRights">
+      &copy; {{today | date:'yyy'}} Wa2te
+      <br>
+      All Rights Reserved.
+    </div>
+    <div class="social" *ngIf="settings">
+      <ul>
+        <a href="{{settings.twitter}}" target="_blank"><li><i class="icon ion-social-twitter"></i></li></a>
+        <a href="{{settings.fb}}" target="_blank"><li><i class="icon ion-social-facebook"></i></li></a>
+        <a href="{{settings.linkedin}}" target="_blank"><li><i class="icon ion-social-linkedin"></i></li></a>
+        <a href="{{settings.instgram}}" target="_blank"><li><i class="icon ion-social-instagram"></i></li></a>
+      </ul>
+    </div>
+  </div>
+
+  <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span id="closeID" class="close" (click)="closeModel()">&times;</span>
+      Phone Number Check
+      <input type="checkbox" name="PhoneNumberCheck" >
+      <br>
+      WebSite Check
+      <input type="checkbox" name="WebSiteCheck">
+      <br>
+      <input type="submit" value="Send">
+    </div>
+
+  </div>
+
+
+
+
+
+</section><!--/#singleCategory-->
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left" *ngIf="lang">Report Incorrect Data</h4>
+    <h4 class="modal-title pull-left" *ngIf="!lang">أبلغ عن معلومات خاطئة</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <div class="">
+          <div class="row">
+              <!--<br>-->
+            <form [formGroup]="invalidDataForm" (ngSubmit)="addinvalidData(invalidDataForm.value)" novalidate>
+
+              <div class="form-group col-md-6" *ngIf="lang">
+                <input type="checkbox"  formControlName="singleHours" [(ngModel)]="model.singleHours"/> Working Hours
+              </div>
+
+              <div class="form-group col-md-6" *ngIf="!lang">
+                <input type="checkbox"  formControlName="singleHours" [(ngModel)]="model.singleHours" /> عدد ساعات العمل
+              </div>
+
+              <div class="form-group col-md-6" *ngIf="lang">
+                <input type="checkbox"  formControlName="singlephone" [(ngModel)]="model.singlephone"/>  Mobile
+              </div>
+
+              <div class="form-group col-md-6" *ngIf="!lang">
+                <input type="checkbox"  formControlName="singlephone" [(ngModel)]="model.singlephone" /> رقم الهاتف
+              </div>
+
+              <div class="col-md-6" *ngIf="lang">
+              <input type="email" placeholder="email" formControlName="email" [(ngModel)]="model.user_email" class="form-control" >
+              </div>
+
+              <div class="col-md-6" *ngIf="!lang">
+                <input type="email" placeholder="بريدك الإلكتروني" formControlName="email" [(ngModel)]="model.user_email" class="form-control" >
+              </div>
+
+
+              <div class="col-md-6" *ngIf="lang">
+              <input type="text" placeholder="phone" formControlName="phone" [(ngModel)]="model.user_phone" class="form-control" id="title_en" name="title_en">
+              </div>
+
+              <div class="col-md-6" *ngIf="!lang">
+                <input type="text" placeholder="رقم الهاتف" formControlName="phone" [(ngModel)]="model.user_phone" class="form-control" id="title_en" name="title_en">
+              </div>
+
+              <div class="col-md-6" *ngIf="lang">
+                <br>
+               <button type="submit" class="btn btn-success text-center">Send</button>
+              </div>
+
+              <div class="col-md-6" *ngIf="!lang">
+                <br>
+               <button type="submit" class="btn btn-success text-center">إرسال</button>
+              </div>
+
+            </form>
+
+
+          </div>
+      </div>
+  </div>
+</ng-template>

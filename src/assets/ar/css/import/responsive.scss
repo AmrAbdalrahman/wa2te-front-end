@@ -1,0 +1,55 @@
+/*Big Size Screens*/
+@media (min-width: 1200px)
+{
+
+}
+
+/* small Screens & tablets & Smart phone */
+@media (max-width: 991px)
+{
+
+}
+
+/* Small Screens */
+@media (min-width: 768px) and (max-width: 991px)
+{
+
+}
+
+/* Mobile & Tablets */
+@media (max-width: 767px)
+{
+
+}
+
+/* Tablets */
+@media (min-width:480px) and (max-width: 767px)
+{
+
+}
+
+/* Mobile */
+@media (max-width: 479px)
+{
+
+}
+
+
+
+// Custome Media
+@media (max-width: 600px){
+	footer{
+		text-align: center;
+		ul.social-media{
+			float: none !important; margin: 1% auto !important
+		}
+		ul.social-media i{font-size: .9em}
+		.footer-nav{display: none}
+		}
+	.logo.index-logo{
+		margin-top: 8vh;
+		img{
+			width: 80%
+		}
+	}
+}
